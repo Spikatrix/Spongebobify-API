@@ -9,7 +9,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const API_URL = '/api/v1/spongebobify';
 
 app.get('/', (req, res) => {
-	res.status(400).send(`Send a string to ${API_URL}`)
+	// res.status(400).send(`Send a string to ${API_URL}`)
+	res.writeHead(400, { 'Content-Type': 'text/html' });
+	res.write(`Send a string to ${API_URL}`);
+	res.end();
 });
 
 app.post(API_URL, (req, res) => {
@@ -30,7 +33,7 @@ app.post(API_URL, (req, res) => {
 		statusCode = 400;
 	}
 
-	res.status(statusCode).send({
+	res.json({
 		success: success,
 		message: message,
 	})
