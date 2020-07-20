@@ -1,6 +1,7 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 app.use(bodyParser.json());
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/.netlify/functions/server', express.Router());
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 app.post(API_URL, (req, res) => {
 	var success;
