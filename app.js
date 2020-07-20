@@ -1,7 +1,6 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
-const path = require('path');
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,9 +14,6 @@ app.get('/', (req, res) => {
 	res.write(`Send a string to ${API_URL}`);
 	res.end();
 });
-
-app.use('/.netlify/functions/server', express.Router());
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 app.post(API_URL, (req, res) => {
 	var success;
@@ -49,7 +45,6 @@ const PORT = 8080;
 // 	console.log(`Server is running on port ${PORT}`)
 // });
 
-module.exports = app;
 module.exports.handler = serverless(app);
 
 function spongebobifyText(str) {
