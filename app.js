@@ -1,5 +1,4 @@
 const express = require('express');
-const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -38,11 +37,10 @@ app.post(API_URL, (req, res) => {
 
 const PORT = 8080;
 
-// app.listen(PORT, () => {
-// 	console.log(`Server is running on port ${PORT}`)
-// });
+app.listen(PORT, () => {
+	console.log(`Server is running on port ${PORT}`)
+});
 
-module.exports.handler = serverless(app);
 
 function spongebobifyText(str) {
 	let mockStr = ""
