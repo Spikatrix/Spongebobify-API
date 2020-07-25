@@ -8,7 +8,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const API_URL = '/api/v1/spongebobify';
 
 app.get('/', (req, res) => {
-	res.status(400).send(`Send a GET request or a query with a string in the 'text' key parameter to ${API_URL} to spongebobify the text`)
+	var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl.substring(0, req.originalUrl.length - 1);
+	res.status(400).send(`Send a GET request or a query with a string in the '<i>text</i>' key parameter to ` + 
+						 `<b>${fullUrl}${API_URL}</b> to spongebobify the text<br><br>` + 
+						 `Example: ${fullUrl}${API_URL}?text=Spongebobify`)
 });
 
 app.get(API_URL, (req, res) => {
