@@ -15,8 +15,6 @@ app.get('/', (req, res) => {
 	res.end();
 });
 
-app.use('/.netlify/functions/server', express.Router());
-
 app.post(API_URL, (req, res) => {
 	var success;
 	var message;
@@ -47,7 +45,6 @@ const PORT = 8080;
 // 	console.log(`Server is running on port ${PORT}`)
 // });
 
-module.exports = app;
 module.exports.handler = serverless(app);
 
 function spongebobifyText(str) {
