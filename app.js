@@ -11,7 +11,8 @@ app.get('/', (req, res) => {
 	var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl.substring(0, req.originalUrl.length - 1);
 	res.status(400).send(`Send a GET request or a query with a string in the '<i>text</i>' key parameter to ` + 
 						 `<b>${fullUrl}${API_URL}</b> to spongebobify the text<br><br>` + 
-						 `Example: ${fullUrl}${API_URL}?text=Spongebobify`)
+						 `Example: ${fullUrl}${API_URL}?text=Spongebobify or ` + 
+			     			 `<code>curl -X GET http://nameless-waters-90998.herokuapp.com/api/v1/spongebobify -d text="Spongebobify"</code>`)
 });
 
 app.get(API_URL, (req, res) => {
